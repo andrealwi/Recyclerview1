@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal">
 
@@ -15,7 +14,6 @@
         android:layout_gravity="center"
         android:src="@drawable/benzema"
         />
-
     <TextView
         android:id="@+id/textDataPribadi"
         android:layout_width="match_parent"
@@ -28,27 +26,25 @@
         android:textSize="20sp"
         android:layout_gravity="center_horizontal"
         />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp">
-
+        android:layout_marginEnd="5dp" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama :"
             />
-
         <TextView
             android:id="@+id/txtNamaPemain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF000000"
+            android:textColor="#0A0B0A"
             android:text="Benzema"
             />
-
     </LinearLayout>
 
     <LinearLayout
@@ -56,23 +52,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp">
-
+        android:layout_marginEnd="5dp" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tempat Lahir :"
             />
-
         <TextView
             android:id="@+id/txtTempatLahir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF000000"
+            android:textColor="#0A0B0A"
             android:text="Benzema"
             />
-        0A0B0A
-
     </LinearLayout>
 
     <LinearLayout
@@ -80,22 +72,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp">
-
+        android:layout_marginEnd="5dp" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tanggal Lahir :"
             />
-
         <TextView
             android:id="@+id/txtTanggalLahir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF000000"
+            android:textColor="#0A0B0A"
             android:text="Benzema"
             />
-
     </LinearLayout>
 
     <LinearLayout
@@ -103,22 +92,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp">
-
+        android:layout_marginEnd="5dp" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Posisi :"
             />
-
         <TextView
             android:id="@+id/txtPosisi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF000000"
+            android:textColor="#0A0B0A"
             android:text="Benzema"
             />
-
     </LinearLayout>
 
     <LinearLayout
@@ -126,33 +112,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp">
-
+        android:layout_marginEnd="5dp" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tinggi :"
             />
-
         <TextView
             android:id="@+id/txtTinggi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF000000"
+            android:textColor="#0A0B0A"
             android:text="Benzema"
             />
-
     </LinearLayout>
-    
+
     <Button
         android:id="@+id/btnClose"
         android:text="Close"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        />
-
-
+        android:layout_marginRight="5dp" />
 
 </LinearLayout>

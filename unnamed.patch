@@ -1,0 +1,281 @@
+Index: app/src/main/java/com/andrealwi/recyclerview/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/andrealwi/recyclerview/MainActivity.kt b/app/src/main/java/com/andrealwi/recyclerview/MainActivity.kt
+--- a/app/src/main/java/com/andrealwi/recyclerview/MainActivity.kt	(revision fe838662ef8634d1514a947e338c6314f0648f35)
++++ b/app/src/main/java/com/andrealwi/recyclerview/MainActivity.kt	(revision 2c63e57d24f263efe4ec51cb0e2d5244701b6963)
+@@ -1,7 +1,12 @@
+ package com.andrealwi.recyclerview
+ 
++import android.app.Dialog
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import android.view.Window
++import android.widget.Button
++import android.widget.ImageView
++import android.widget.TextView
+ import com.andrealwi.recyclerview.adapter.AdapterTeamBola
+ import com.andrealwi.recyclerview.databinding.ActivityMainBinding
+ import com.andrealwi.recyclerview.model.Pemain
+@@ -17,14 +22,40 @@
+ 
+         val listPemain = ArrayList<Pemain>()
+         listPemain.add(Pemain("Thibaut Courtois",R.drawable.courtois,"Penjaga Gawang","2.00 m","Bree (Belgia)","11 Mei 1992"))
+-        listPemain.add(Pemain("Karim Benzema",R.drawable.courtois,"Penyerang","1,85 m","Lyon (Perancis)","19 Desember 1987"))
+-        listPemain.add(Pemain("Marcelo Vieira da Silva",R.drawable.courtois,"Belakang","1,74 m","Rio de Janeiro (Brasil)","12 Mei 1988"))
+-        listPemain.add(Pemain("Sergio Ramos García",R.drawable.courtois,"Belakang","1,84 m","Camas (Sevilla)","30 Maret 1986"))
+-        listPemain.add(Pemain("Zinedine Yazid Zidane",R.drawable.courtois,"Pelatih","1,85 m","Marseille (Prancis)","23 Juni 1972"))
++        listPemain.add(Pemain("Karim Benzema",R.drawable.benzema,"Penyerang","1,85 m","Lyon (Perancis)","19 Desember 1987"))
++        listPemain.add(Pemain("Marcelo Vieira da Silva",R.drawable.marcello,"Belakang","1,74 m","Rio de Janeiro (Brasil)","12 Mei 1988"))
++        listPemain.add(Pemain("Sergio Ramos García",R.drawable.ramos,"Belakang","1,84 m","Camas (Sevilla)","30 Maret 1986"))
++        listPemain.add(Pemain("Zinedine Yazid Zidane",R.drawable.zidan,"Pelatih","1,85 m","Marseille (Prancis)","23 Juni 1972"))
+ 
+         binding.list.adapter = AdapterTeamBola(this,listPemain,object : AdapterTeamBola.OnClickListener {
+             override fun detailData(item: Pemain?) {
+-                TODO("Not yet implemented")
++                Dialog(this@MainActivity).apply {
++                    requestWindowFeature(Window.FEATURE_NO_TITLE)
++                    setCancelable(true)
++                    setContentView(R.layout.detail_data_pemain)
++
++                    val image = this.findViewById<ImageView>(R.id.image_pemain)
++                    val nama = this.findViewById<TextView>(R.id.txtNamaPemain)
++                    val posisi = this.findViewById<TextView>(R.id.txtPosisi)
++                    val tinggi = this.findViewById<TextView>(R.id.txtTinggi)
++                    val tempatlahir = this.findViewById<TextView>(R.id.txtTempatLahir)
++                    val tgllahir = this.findViewById<TextView>(R.id.txtTanggalLahir)
++                    val btn = this.findViewById<Button>(R.id.btnClose)
++
++                    image.setImageResource(item?.foto ?:0)
++                    nama.text = "${item?.nama}"
++                    posisi.text = "${item?.posisi}"
++                    tinggi.text = "${item?.tinggi}"
++                    tempatlahir.text = "${item?.tempatlahir}"
++                    tgllahir.text = "${item?.tgllahir}"
++
++                    btn.setOnClickListener {
++                        this.dismiss()
++                    }
++
++
++
++                }.show()
+             }
+ 
+         })
+Index: app/src/main/res/layout/detail_data_pemain.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/detail_data_pemain.xml b/app/src/main/res/layout/detail_data_pemain.xml
+new file mode 100644
+--- /dev/null	(revision 2c63e57d24f263efe4ec51cb0e2d5244701b6963)
++++ b/app/src/main/res/layout/detail_data_pemain.xml	(revision 2c63e57d24f263efe4ec51cb0e2d5244701b6963)
+@@ -0,0 +1,158 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:orientation="vertical"
++    android:layout_gravity="center_horizontal">
++
++    <ImageView
++        android:id="@+id/image_pemain"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="16dp"
++        android:layout_marginEnd="16dp"
++        android:layout_gravity="center"
++        android:src="@drawable/benzema"
++        />
++
++    <TextView
++        android:id="@+id/textDataPribadi"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="1dp"
++        android:drawablePadding="5dp"
++        android:padding="5dp"
++        android:text="Data Pribadi"
++        android:textAlignment="center"
++        android:textSize="20sp"
++        android:layout_gravity="center_horizontal"
++        />
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:layout_marginStart="5dp"
++        android:layout_marginEnd="5dp">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Nama :"
++            />
++
++        <TextView
++            android:id="@+id/txtNamaPemain"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textColor="#FF000000"
++            android:text="Benzema"
++            />
++
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:layout_marginStart="5dp"
++        android:layout_marginEnd="5dp">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Tempat Lahir :"
++            />
++
++        <TextView
++            android:id="@+id/txtTempatLahir"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textColor="#FF000000"
++            android:text="Benzema"
++            />
++        0A0B0A
++
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:layout_marginStart="5dp"
++        android:layout_marginEnd="5dp">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Tanggal Lahir :"
++            />
++
++        <TextView
++            android:id="@+id/txtTanggalLahir"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textColor="#FF000000"
++            android:text="Benzema"
++            />
++
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:layout_marginStart="5dp"
++        android:layout_marginEnd="5dp">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Posisi :"
++            />
++
++        <TextView
++            android:id="@+id/txtPosisi"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textColor="#FF000000"
++            android:text="Benzema"
++            />
++
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:layout_marginStart="5dp"
++        android:layout_marginEnd="5dp">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Tinggi :"
++            />
++
++        <TextView
++            android:id="@+id/txtTinggi"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textColor="#FF000000"
++            android:text="Benzema"
++            />
++
++    </LinearLayout>
++    
++    <Button
++        android:id="@+id/btnClose"
++        android:text="Close"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginLeft="5dp"
++        android:layout_marginRight="5dp"
++        />
++
++
++
++</LinearLayout>
+\ No newline at end of file
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+new file mode 100644
+--- /dev/null	(revision 6edcc6618ef110c0f654f93a53e43f090cf250da)
++++ b/.idea/deploymentTargetDropDown.xml	(revision 6edcc6618ef110c0f654f93a53e43f090cf250da)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="deploymentTargetDropDown">
++    <runningDeviceTargetSelectedWithDropDown>
++      <Target>
++        <type value="RUNNING_DEVICE_TARGET" />
++        <deviceKey>
++          <Key>
++            <type value="VIRTUAL_DEVICE_PATH" />
++            <value value="C:\Users\andre\.android\avd\Pixel_6_API_31.avd" />
++          </Key>
++        </deviceKey>
++      </Target>
++    </runningDeviceTargetSelectedWithDropDown>
++    <timeTargetWasSelectedWithDropDown value="2023-05-18T19:42:03.173112400Z" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 2c63e57d24f263efe4ec51cb0e2d5244701b6963)
++++ b/app/src/main/res/layout/activity_main.xml	(revision 6edcc6618ef110c0f654f93a53e43f090cf250da)
+@@ -12,7 +12,7 @@
+         android:layout_marginStart="5dp"
+         android:layout_marginEnd="5dp"
+         android:orientation="vertical"
+-        tools:ignore="MissingConstraints">
++        tools:ignore="MissingConstraints" >
+ 
+         <TextView
+             android:id="@+id/textView"
